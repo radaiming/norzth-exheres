@@ -1,3 +1,7 @@
+# Copyright 2014 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+
 SUMMARY="a minimal dumb-terminal emulation program"
 HOMEPAGE="https://code.google.com/p/picocom/"
 DOWNLOADS="https://picocom.googlecode.com/files/${PNV}.tar.gz"
@@ -8,4 +12,5 @@ PLATFORMS="~amd64"
 
 src_install() {
     dobin picocom
+    doman picocom.8
 }
