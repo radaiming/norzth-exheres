@@ -1,0 +1,48 @@
+# Copyright 2014 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 1.10 1.9 1.8 ] ]
+
+SCM_REPOSITORY="git://boinc.berkeley.edu/boinc-v2.git"
+SCM_TAG="client_release/7.2/${PV}"
+require scm-git
+
+SUMMARY="Open-source software for volunteer computing and grid computing"
+HOMEPAGE="https://boinc.berkeley.edu"
+DOWNLOADS=""
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    X [[ description = [ build Boinc Manager with the X Window System ] ]]
+"
+
+
+DEPENDENCIES="
+    build:
+        sys-devel/make[>3.79]
+        sys-devel/m4[>1.4]
+        sys-devel/libtool[>1.5]
+        sys-devel/gcc[>3.0.4]
+        dev-util/pkg-config[>0.15]
+    build+run:
+        dev-libs/openssl[>0.9.8]
+        X? (
+            dev-db/sqlite[>=3.1]
+            x11-libs/wxWidgets:2.8.3
+            x11-libs/libX11
+            media-libs/jpeg
+            )
+        net-misc/curl[>7.17.1]
+"
+
+src_prepare() {
+    autotools_src_prepare
+}
+
+src_configure() {
+    econf --disable-server \
+        $(option X || echo '--disable-manager')
+        $(option X && echo '--with-x')
+}
