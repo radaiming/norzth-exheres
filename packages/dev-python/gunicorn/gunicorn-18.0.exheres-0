@@ -1,0 +1,14 @@
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi
+require setup-py [ import=distutils ]
+
+SUMMARY="A Python WSGI HTTP Server for UNIX"
+HOMEPAGE="http://gunicorn.org/"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
