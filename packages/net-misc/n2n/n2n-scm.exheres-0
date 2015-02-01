@@ -1,0 +1,19 @@
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+#
+
+SCM_REPOSITORY="https://svn.ntop.org/svn/ntop/trunk/n2n"
+SCM_SVN_RAW_URI=1
+require scm-svn
+
+SUMMARY="A layer two Peer-to-Peer VPN"
+HOMEPAGE="http://www.ntop.org/products/n2n/"
+DOWNLOADS=""
+
+LICENCES="GPL-v3"
+SLOT="2"
+PLATFORMS="~amd64"
+WORK="${WORKBASE}/${PNV}/n2n_v2"
+
+
+DEPENDENCIES=""
