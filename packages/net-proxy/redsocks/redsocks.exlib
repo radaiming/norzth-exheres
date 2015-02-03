@@ -1,0 +1,25 @@
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+
+SCM_REPOSITORY="https://github.com/darkk/redsocks.git"
+require scm-git
+
+SUMMARY="transparent socks redirector"
+HOMEPAGE="http://darkk.net.ru/redsocks/"
+DOWNLOADS=""
+
+LICENCES="Apache-2.0"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libevent
+"
+
+src_install() {
+    dobin redsocks
+    dodir /etc/redsocks/
+    insinto /etc/redsocks/
+    doins redsocks.conf.example
+}
