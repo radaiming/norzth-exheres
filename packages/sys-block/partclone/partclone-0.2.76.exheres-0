@@ -1,0 +1,43 @@
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="Partition cloning tool"
+HOMEPAGE="http://partclone.org/"
+DOWNLOADS="https://github.com/Thomas-Tsai/partclone/archive/0.2.76.zip"
+
+LICENCES="GPL"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    extfs [[ description = [ enable support extfs ] ]]
+    xfs [[ description = [ enable support xfs ] ]]
+    reiserfs [[ description = [ enable support reiserfs ] ]]
+    reiser4 [[ description = [ enable support reiser4 ] ]]
+    hfsp [[ description = [ enable support hfsp ] ]]
+    fat [[ description = [ enable support fat ] ]]
+    exfat [[ description = [ enable support extfat ] ]]
+    f2fs [[ description = [ enable support f2fs ] ]]
+    ntfs [[ description = [ enable support ntfs ] ]]
+    ufs [[ description = [ enable support ufs(1/2) ] ]]
+    vmfs [[ description = [ enable support vmfs ] ]]
+    jfs [[ description = [ enable support jfs ] ]]
+    btrfs [[ description = [ enable support btrfs ] ]]
+    minix [[ description = [ enable support minix ] ]]
+    ncursesw [[ description = [ enable text user interface ] ]]
+    static [[ description = [ enable static linking ] ]]
+    mtrace [[ description = [ enable memory tracing ] ]]
+    fs-test [[ description = [ enable file system clone/restore test ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        sys-fs/e2fsprogs
+        btrfs? ( sys-fs/btrfs-progs )
+        fat? ( sys-fs/dosfstools )
+        ntfs? ( sys-fs/ntfs-3g_ntfsprogs )
+        jfs? ( sys-fs/jfsutils )
+        reiserfs? ( sys-fs/reiserfsprogs )
+        reiser4? ( sys-fs/reiser4progs )
+        xfs? ( sys-fs/xfsprogs )
+"
