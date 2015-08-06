@@ -1,0 +1,14 @@
+# Copyright 2008, 2009 Ingmar Vanhassel <ingmar@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="https://subversion.assembla.com/svn/${PN}/${PN}/"
+
+require scm-svn smplayer
+
+DOWNLOADS=""
+PLATFORMS="~amd64 ~x86"
+
+
+src_prepare() {
+    ./get_svn_revision.sh
+}

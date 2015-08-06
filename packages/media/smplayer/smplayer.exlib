@@ -1,0 +1,38 @@
+# Copyright 2008, 2009 Ingmar Vanhassel <ingmar@exherbo.org>
+# Modified by radaiming, 2015
+# Distributed under the terms of the GNU General Public License v2
+
+
+SUMMARY="A complete front-end for MPlayer/mpv"
+
+BUGS_TO="radaiming@gmail.com"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/qtbase
+        x11-libs/qtscript
+    run:
+        || (
+            media/mplayer
+            media/mpv
+            )
+    suggestion:
+        x11-themes/smplayer-themes
+"
+
+src_prepare() {
+    # turn off update
+    sed -e 's:DEFINES += UPDATE_CHECKER:#DEFINES += UPDATE_CHECKER:' \
+    -e 's:DEFINES += CHECK_UPGRADED:#DEFINES += CHECK_UPGRADED:' \
+    -i src/${PN}.pro
+
+    # fix compiling error
+    sed -e "/#include <QCoreApplication>/a#include <QDataStream>" \
+    -i src/qtsingleapplication/qtlocalpeer.cpp
+
+    sed -e "s/QMAKE=qmake/QMAKE=qmake-qt5/" -i Makefile
+    sed -e "s|PREFIX=/usr/local|PREFIX=/usr/x86_64-pc-linux-gnu|" -i Makefile
+}
