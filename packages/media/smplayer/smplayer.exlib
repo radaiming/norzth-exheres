@@ -23,7 +23,7 @@ DEPENDENCIES="
         x11-themes/smplayer-themes
 "
 
-src_prepare() {
+src_configure() {
     # turn off update
     sed -e 's:DEFINES += UPDATE_CHECKER:#DEFINES += UPDATE_CHECKER:' \
     -e 's:DEFINES += CHECK_UPGRADED:#DEFINES += CHECK_UPGRADED:' \
@@ -34,5 +34,11 @@ src_prepare() {
     -i src/qtsingleapplication/qtlocalpeer.cpp
 
     sed -e "s/QMAKE=qmake/QMAKE=qmake-qt5/" -i Makefile
-    sed -e "s|PREFIX=/usr/local|PREFIX=/usr/x86_64-pc-linux-gnu|" -i Makefile
+    sed -e "s|PREFIX=/usr/local|PREFIX=/usr|" -i Makefile
+    sed -e '/^install/{n;N;d}' -i Makefile
+}
+
+src_install() {
+    dobin src/smplayer
+    default
 }
