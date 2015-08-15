@@ -2,15 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 
-SCM_REPOSITORY="https://github.com/darkk/redsocks.git"
-require scm-git
-
 SUMMARY="transparent socks redirector"
 HOMEPAGE="http://darkk.net.ru/redsocks/"
-DOWNLOADS=""
+DOWNLOADS="https://github.com/darkk/redsocks/archive/release-${PV}.zip"
 
 LICENCES="Apache-2.0"
 SLOT="0"
+WORK="${WORKBASE}/${PN}-release-${PV}"
 
 DEPENDENCIES="
     build+run:
