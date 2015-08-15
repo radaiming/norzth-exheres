@@ -1,16 +1,17 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 2015 <radaiming@gmail.com>
+# this exheres is based on ebuild from Gentoo, dnscrypt-proxy.service and
+# /etc/conf.d/dnscrypt-proxy are copied from portage
+#
 # Distributed under the terms of the GNU General Public License v2
-# dnscrypt-proxy.service and dnscrypt-proxy.confd are copied from portage
 
 require systemd-service
 
 SUMMARY="A protocol for securing communications between a client and a DNS resolver"
 HOMEPAGE="http://dnscrypt.org/"
-DOWNLOADS="https://github.com/jedisct1/dnscrypt-proxy/releases/download/1.4.3/dnscrypt-proxy-1.4.3.tar.gz"
+DOWNLOADS="https://download.dnscrypt.org/dnscrypt-proxy/${PN}-${PV}.tar.gz"
 
 LICENCES="ISC"
 SLOT="0"
-PLATFORMS="~amd64"
 MYOPTIONS="
     systemd [[ description = [ Add support for the systemd init daemon (usually by installing units (configuration files)). ] ]]
 "
