@@ -5,11 +5,10 @@
 
 SUMMARY="A Virtual Private Network (VPN) daemon"
 HOMEPAGE="http://www.tinc-vpn.org/"
-DOWNLOADS="http://www.tinc-vpn.org/packages/tinc-1.0.25.tar.gz"
+DOWNLOADS="http://www.tinc-vpn.org/packages/${PNV}.tar.gz"
 
 LICENCES="GPL-v2"
 SLOT="0"
-PLATFORMS="~amd64"
 MYOPTIONS="
     uml [[ description = [ support for User Mode Linux ] ]]
     lzo [[ description = [ enable lzo compression support ] ]]
