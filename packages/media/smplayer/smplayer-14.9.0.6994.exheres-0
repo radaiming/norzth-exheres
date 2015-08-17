@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 
-require smplayer
+require smplayer sourceforge
 
-DOWNLOADS="http://downloads.sourceforge.net/smplayer/smplayer-14.9.0.6994.tar.bz2"
 PLATFORMS="~amd64 ~x86"
