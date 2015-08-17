@@ -4,4 +4,4 @@
 
 require smplayer sourceforge
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"

@@ -6,4 +6,4 @@ SCM_REPOSITORY="https://subversion.assembla.com/svn/${PN}/${PN}/"
 require scm-svn smplayer
 
 DOWNLOADS=""
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
