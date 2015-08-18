@@ -1,0 +1,18 @@
+# Copyright 2015 @radaiming
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_TAG="v${PV}"
+require pam github [ user=tiwe-de ]
+
+SUMMERY="PAM module allowing authentication via an /etc/passwd-like file"
+LICENCES="GPL"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    run+build: sys-libs/pam
+"
+
+src_install() {
+    dopammod pam_pwdfile.so
+}
