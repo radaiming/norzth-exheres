@@ -24,5 +24,5 @@ DEPENDENCIES="
 src_configure() {
     econf \
     --with-init-style=systemd \
-    --with-init-dir=/usr/$(exhost --target)/systemd/system/
+    --with-init-dir=/usr/$(exhost --target)/lib/systemd/system/
 }
