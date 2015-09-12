@@ -5,6 +5,7 @@
 require sourceforge
 
 SUMMERY="A freely-available Open Source AFP fileserver"
+HOMEPAGE="http://netatalk.sourceforge.net"
 LICENCES="GPL"
 SLOT="0"
 PLATFORMS="~amd64"
@@ -19,3 +20,9 @@ DEPENDENCIES="
         dev-python/dbus-python[python_abis:2.7]
         net-directory/openldap
 "
+
+src_configure() {
+    econf \
+    --with-init-style=systemd \
+    --with-init-dir=/usr/$(exhost --target)/systemd/system/
+}
