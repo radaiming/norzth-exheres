@@ -21,8 +21,7 @@ DEPENDENCIES="
         net-directory/openldap
 "
 
-src_configure() {
-    econf \
-    --with-init-style=systemd \
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --with-init-style=systemd
     --with-init-dir=/usr/$(exhost --target)/lib/systemd/system/
-}
+)
