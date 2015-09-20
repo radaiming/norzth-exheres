@@ -1,0 +1,76 @@
+# Copyright 2015 @radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# some parts are copied from ghc.exlib
+
+
+SUMMERY="Telegram Desktop messaging app"
+HOMEPAGE="https://telegram.org"
+DOWNLOADS=""
+
+LICENCES="GPLv3"
+SLOT="0"
+WORK="${WORKBASE}/Telegram"
+
+DEPENDENCIES="
+    build:
+        dev-util/patchelf
+    run: 
+        media-libs/libexif
+        app-arch/xz
+        sys-libs/zlib
+        dev-libs/openssl
+        dev-libs/libappindicator
+        media-libs/opus
+        media/ffmpeg
+        media-libs/portaudio
+        media-libs/openal
+        x11-libs/libxkbcommon
+        x11-libs/qtbase
+"
+
+src_fetch_extra() {
+    case $(exhost --build) in
+        x86_64-pc-linux-gnu)
+            dohttps "https://updates.tdesktop.com/tlinux/tsetup.${PV}.tar.xz"
+        ;;
+        i686-pc-linux-gnu)
+            dohttps "https://updates.tdesktop.com/tlinux32/tsetup32.${PV}.tar.xz"
+        ;;
+        *)
+            die "Host not supported"
+        ;;
+    esac
+}
+
+
+src_unpack() {
+    case $(exhost --build) in
+        x86_64-pc-linux-gnu)
+            edo unpack "tsetup.${PV}.tar.xz"
+        ;;
+        i686-pc-linux-gnu)
+            edo unpack "tsetup32.${PV}.tar.xz"
+        ;;
+    esac
+}
+
+pkg_preinst() {
+    # any idea to merge this logic with src_fetch_extra and src_unpack?
+    case $(exhost --build) in
+        x86_64-pc-linux-gnu)
+            ld_suffix="-x86-64"
+        ;;
+        i686-pc-linux-gnu)
+            ld_suffix=""
+        ;;
+        *)
+            die "Host not supported"
+        ;;
+    esac
+    ELF_INTERPRETER=/usr/$(exhost --build)/lib/ld-linux${ld_suffix}.so.2
+    edo patchelf --set-interpreter ${ELF_INTERPRETER} "${IMAGE}/usr/$(exhost --build)/bin/Telegram"
+}
+
+src_install() {
+    dobin Telegram
+}
