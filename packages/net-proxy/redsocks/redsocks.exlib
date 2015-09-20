@@ -17,7 +17,6 @@ DEPENDENCIES="
 
 src_install() {
     dobin redsocks
-    dodir /etc/redsocks/
     insinto /etc/redsocks/
     doins redsocks.conf.example
 }
