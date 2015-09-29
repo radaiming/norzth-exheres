@@ -1,0 +1,28 @@
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# dependencies are copied from gentoo portage
+
+
+SCM_REPOSITORY="http://anongit.freedesktop.org/git/xorg/app/intel-gpu-tools.git"
+SCM_TAG="${PN}-${PV}"
+require scm-git
+
+SUMMARY="Variety of small tools for testing intel graphics"
+HOMEPAGE="http://cgit.freedesktop.org/xorg/app/intel-gpu-tools/"
+
+LICENCES="MIT"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib
+        x11-libs/cairo
+        x11-dri/libdrm
+        x11-libs/libpciaccess
+        dev-libs/libunwind
+        app-doc/gtk-doc-autotools
+"
+
+src_prepare() {
+    ./autogen.sh --enable-gtk-doc
+}
