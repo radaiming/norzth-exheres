@@ -1,0 +1,42 @@
+# Copyright 2010 Timothy Redaelli <timothy@redaelli.eu>
+# Copyright 2013-2015 Ray Griffin <rorgoroth-dev@outlook.com>
+# Copyright 2015 radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Accelerated light UNIX download tool"
+DESCRIPTION="
+Axel tries to accelerate HTTP/FTP downloading process by using multiple
+connections for one file. It can use multiple mirrors for a download.
+Axel has no dependencies and is lightweight, so it might be useful as a
+wget clone on byte-critical systems.
+"
+
+HOMEPAGE="http://axel.alioth.debian.org/"
+
+# Currently down/missing source, fetch from fedora for now.
+#DOWNLOADS="https://alioth.debian.org/frs/download.php/3015/${PNV}.tar.gz"
+DOWNLOADS="http://pkgs.fedoraproject.org/repo/pkgs/${PN}/${PNV}.tar.gz/a2a762fce0c96781965c8f9786a3d09d/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="debug [[ description = [ Build binary with debugging symbols ] ]]"
+
+BUGS_TO="rorgoroth-dev@outlook.com"
+
+DEPENDENCIES="
+    build+run:
+        sys-devel/gettext
+"
+
+src_configure() {
+    edo ./configure \
+        --strip=0 \
+        --prefix=/usr/$(exhost --target)/ \
+        --etcdir=/etc \
+        --mandir=/usr/share/man \
+        --locale=/usr/share/local \
+        --i18n=1 \
+        $(option_enable debug --debug=1)
+}
+
