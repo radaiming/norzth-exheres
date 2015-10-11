@@ -29,12 +29,15 @@ DEPENDENCIES="
 "
 
 src_fetch_extra() {
+    for path in ${PALUDIS_FETCHERS_DIRS[@]};do
+        export PATH="${PATH}:${path}"
+    done
     case $(exhost --build) in
         x86_64-pc-linux-gnu)
-            dohttps "https://updates.tdesktop.com/tlinux/tsetup.${PV}.tar.xz"
+            dohttps "https://updates.tdesktop.com/tlinux/tsetup.${PV}.tar.xz" "${FETCHEDDIR}"/tsetup.${PV}.tar.xz
         ;;
         i686-pc-linux-gnu)
-            dohttps "https://updates.tdesktop.com/tlinux32/tsetup32.${PV}.tar.xz"
+            dohttps "https://updates.tdesktop.com/tlinux32/tsetup32.${PV}.tar.xz" "${FETCHEDDIR}"/tsetup.${PV}.tar.xz
         ;;
         *)
             die "Host not supported"
