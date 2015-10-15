@@ -21,7 +21,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib
         x11-libs/cairo
-        x11-dri/libdrm
+        x11-dri/libdrm[video_drivers:intel]
         x11-libs/libpciaccess
         dev-libs/libunwind
 "
