@@ -1,9 +1,0 @@
-# Copyright 2015 radaiming
-# Distributed under the terms of the GNU General Public License v2
-
-SCM_REPOSITORY="https://subversion.assembla.com/svn/${PN}/${PN}/"
-
-require scm-svn smplayer
-
-DOWNLOADS=""
-PLATFORMS="~amd64"
