@@ -1,0 +1,21 @@
+# Copyright 2015 Ming Dai <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require setup-py [ import=distutils ] github [ user=systemd tag="v${PV}" ]
+
+SUMMARY="Python wrappers for systemd functionality"
+
+LICENCES="GPL-2"
+SLOT="0"
+# why ${WORK} path does not exist here, but exists in youtube-dl-scm.exheres-0?
+WORK="${WORKBASE}"
+
+DEPENDENCIES="
+    build+run:
+        sys-apps/systemd
+"
+
+prepare_one_multibuild() {
+    setup-py_prepare_one_multibuild
+    edo sed -e "s@pkg-config@${PKG_CONFIG}@g" -i setup.py
+}
