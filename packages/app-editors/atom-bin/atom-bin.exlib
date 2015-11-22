@@ -1,0 +1,44 @@
+# Copyright 2015 @radaiming <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ release=v${PV} suffix=deb pn=atom pnv=atom-amd64 ]
+
+SUMMERY="A hackable text editor for the 21st Century"
+HOMEPAGE="https://atom.io"
+LICENCES="MIT"
+SLOT="0"
+
+# need libudev, so depend on systemd
+DEPENDENCIES="
+    build:
+        app-arch/dpkg
+    run:
+        dev-scm/git
+        dev-lang/node
+        gnome-platform/GConf
+        x11-libs/gtk+:2
+        sys-apps/systemd
+        dev-libs/libgcrypt
+        x11-libs/libnotify
+        x11-libs/libXtst
+        dev-lang/python
+        dev-libs/nss
+        gnome-desktop/gvfs
+        x11-apps/xdg-utils
+        sys-libs/libcap
+"
+
+src_unpack() {
+    for a in ${ARCHIVES}; do
+        edo dpkg -X "${FETCHEDDIR}"/${a} "${WORK}"
+    done
+}
+
+src_install() {
+    edo cp -a usr "${IMAGE}"
+    dodir /usr/$(exhost --target)
+    edo mv "${IMAGE}"/usr/{bin,$(exhost --target)}
+    edo pushd "${IMAGE}"/usr/$(exhost --target)/bin/
+    edo ln -sf ../$(readlink apm) apm
+    edo popd
+}
