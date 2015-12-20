@@ -1,0 +1,29 @@
+# Copyright 2015 @ Ming Dai <radaiming@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake github [ user=chengr28 tag=v${PV} ]
+
+SUMMARY="A local DNS server based on WinPcap and LibPcap"
+HOMEPAGE="https://github.com/chengr28/Pcap_DNSProxy"
+LICENCES="GPL-2"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libpcap
+        dev-libs/libsodium
+        sys-devel/bison
+        sys-devel/flex
+        sys-devel/m4
+"
+
+src_install() {
+    dobin ${ECMAKE_BUILD_DIR}/Source/KeyPairGenerator/KeyPairGenerator
+    dobin ${ECMAKE_BUILD_DIR}/Source/Pcap_DNSProxy/Pcap_DNSProxy
+    insinto /etc/${PN}
+    for f in Config Hosts IPFilter
+    do
+        edo cp -v Source/ExampleConfig/${f}.ini "${IMAGE}"/etc/${PN}/${f}.conf
+    done
+    doins Source/ExampleConfig/{Routing.txt,WhiteList.txt}
+}
