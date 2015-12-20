@@ -17,13 +17,14 @@ DEPENDENCIES="
         sys-devel/m4
 "
 
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DENABLE_LIBSODIUM=ON
+    -DENABLE_PCAP=ON
+    )
+
 src_install() {
     dobin ${ECMAKE_BUILD_DIR}/Source/KeyPairGenerator/KeyPairGenerator
     dobin ${ECMAKE_BUILD_DIR}/Source/Pcap_DNSProxy/Pcap_DNSProxy
     insinto /etc/${PN}
-    for f in Config Hosts IPFilter
-    do
-        edo cp -v Source/ExampleConfig/${f}.ini "${IMAGE}"/etc/${PN}/${f}.conf
-    done
-    doins Source/ExampleConfig/{Routing.txt,WhiteList.txt}
+    doins Source/ExampleConfig/{Config.ini,Hosts.ini,IPFilter.ini,Routing.txt,WhiteList.txt}
 }
