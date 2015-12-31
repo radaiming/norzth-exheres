@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="https://github.com/soimort/you-get.git"
+SCM_BRANCH="develop"
 require setup-py [ import=distutils has_bin=true blacklist="2.7" ] scm-git
 
 SUMMARY="You-Get is a video downloader for YouTube, Youku, niconico and a few other sites"
